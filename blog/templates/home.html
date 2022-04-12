@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{% url 'search' %}" method="POST">
+        {% csrf_token %}
+        조회 : <input type="text" name = "title" value="{{blog.title}}">
+        <input type="submit" value="조회">
+    </form>
+    {% for blog in blogs %}
+    <div>
+        <a href="{% url 'detail' blog.id %}">
+            제목 : {{blog.title}} 
+            <br>
+            작성 일시 : {{blog.created_at}}    
+            <br>
+            좋아요 : {{blog.likes}}
+        </a>
+    </div>    
+    <br>
+    {% endfor %}
+    <a href="{% url 'new' %}">작성하기</a>
+
+</body>
+</html>
