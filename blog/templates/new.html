@@ -1,7 +1,12 @@
+{% extends 'base.html' %} {% block content %}
 <h1>new</h1>
-<form action="{% url 'create' %}" method="POST">
+<form action="{% url 'create' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     title : <input type="text" name="title">
     text : <textarea name="contents" id="" cols="30" rows="10"></textarea>
+    <h4>사진</h4>
+    <input type="file" name="image" />
     <input type="submit" value="submit" >
+
 </form>
+{% endblock %}

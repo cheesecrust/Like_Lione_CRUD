@@ -1,3 +1,4 @@
+{% extends 'base.html' %} {% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +15,9 @@
     <br>
     {{blog.likes}}
     <br>
+    {% if blog.image %}
+    <img src="{{blog.image.url}}" alt="">
+    {% endif %}
     <br>
     <a href="{% url 'home' %}">집으로</a>
     <a href="{% url 'edit' blog.id %}">글 수정하기</a>
@@ -24,3 +28,4 @@
     </form>
 </body>
 </html>
+{% endblock %}

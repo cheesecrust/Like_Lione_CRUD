@@ -17,6 +17,8 @@ Including another URLconf
 from unicodedata import name
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
 import blog.views
 
 urlpatterns = [
@@ -37,4 +39,4 @@ urlpatterns = [
 
     # 좋아요
     path('like/<int:id>', blog.views.like, name='like')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
