@@ -25,12 +25,15 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', blog.views.home, name='home'),
     path('blog/<int:id>', blog.views.detail, name="detail"),
+
     # 작성하기
     path('new/', blog.views.new, name='new'),
     path('create/', blog.views.create, name='create'),
+
     # 수정하기
     path('edit/<int:id>', blog.views.edit, name='edit'),
     path('update/<int:id>', blog.views.update, name="update"),
+
     # 삭제하기
     path('delete/<int:id>', blog.views.delete, name="delete"),
 

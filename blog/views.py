@@ -1,10 +1,14 @@
-from turtle import title
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Blog
+from .form import BlogForm
+from django.core.paginator import Paginator
 
 
 def home(request):
     blogs = Blog.objects.all()
+    paginator = Paginator(blogs, 3)
+    pagnum = request.GET.get('page')
+    blogs = paginator.get_page(pagnum)
     return render(request, 'home.html', {'blogs': blogs})
 
 
@@ -14,7 +18,15 @@ def detail(request, id):
 
 
 def new(request):
-    return render(request, 'new.html')
+    # return render(request, 'new.html')
+    if request.method == 'POST':
+        form = BlogForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = BlogForm()
+        return render(request, 'new.html', {'form': form})
 
 
 def create(request):

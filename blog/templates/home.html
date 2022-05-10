@@ -29,6 +29,18 @@
     <br>
     {% endfor %}
     <a href="{% url 'new' %}">작성하기</a>
+    <br>
+    {% if blogs.has_previous %}
+    <a href="?page = 1"> 처음으로</a>
+    <a href="?page={{blog.previous_page_number}}">이전</a>
+    {% endif%}
+    <span>{{blogs.number}}</span>
+    <span>/</span>
+    <span>{{blogs.paginator.num_pages}}</span>
+    {% if blogs.has_next %}
+    <a href="?page={{blog.next_page_number}}">다음</a>
+    <a href="?page={{blog.paginator.num_pages}}">마지막으로</a>
+    {% endif %}
 </body>
 </html>
 {% endblock %}
